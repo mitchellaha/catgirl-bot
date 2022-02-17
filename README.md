@@ -19,6 +19,6 @@ A Python Bot That UwUifys a random fact puts it on a photo of a catgirl then pos
 
 > Tested Python Versions: 3.9.9 and 3.9.10
 
-1. > $ python -m venv venv
+1. > $ python -m venv env
 2. > $ source venv/bin/activate
 3. > $ pip install -r requirements.txt
