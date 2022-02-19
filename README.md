@@ -1,5 +1,38 @@
 # catgirl-bot
-A Python Bot That UwUifys a random fact puts it on a photo of a catgirl then posts to twitter.
+A Python Bot That UwUifys a random ~~fact~~ **stoic quote**, puts it on a photo of a catgirl, then posts to twitter.
+
+This is a Twitter Bot Made For **[@TheCatGirlBot](https://twitter.com/TheCatGirlBot)**
+
+## Ideas
+
+- Maybe Setup Flask for a web interface? 
+- [Instagram Posting](https://www.geeksforgeeks.org/post-a-picture-automatically-on-instagram-using-python/) with CatGirlBot?
+
+
+## CatGirl API Info
+
+- JPEG Endpoint: https://nekos.best/api/v1/nekos
+- GIF Endpoint: https://nekos.best/api/v1/{type}
+
+Gif Types:
+```
+baka, bite, blush, bored, cry,
+cuddle, dance, facepalm, feed,
+happy, highfive, hug, kiss, laugh,
+pat, poke, pout, shrug, slap,
+sleep, smile, smug, stare, think,
+thumbsup, tickle, wave, wink
+```
+
+
+## Python Setup
+
+*Tested Python Versions: 3.9.9 and 3.9.10*
+
+1. ```$ python -m venv env```
+2. ```$ source venv/bin/activate```
+3. ```$ pip install -r requirements.txt```
+
 
 ## Resources
 
@@ -19,28 +52,3 @@ A Python Bot That UwUifys a random fact puts it on a photo of a catgirl then pos
 - [Catgirl API](https://www.nekos.fun/apidoc.html)
 - [Waifu API](https://waifu.im/docs/)
 - [Facts From Number](http://numbersapi.com/#42)
-
-## CatGirl API Info
-
-- JPEG URL: https://nekos.best/api/v1/nekos
-- GIF URL: https://nekos.best/api/v1/{type}
-
-Gif Types:
-```
-baka, bite, blush, bored, cry, cuddle, dance, facepalm, feed, happy, highfive, hug, kiss, laugh, pat, poke, pout, shrug, slap, sleep, smile, smug, stare, think, thumbsup, tickle, wave, wink
-```
-
-
-## Python Setup
-
-> Tested Python Versions: 3.9.9 and 3.9.10
-
-1. > $ python -m venv env
-2. > $ source venv/bin/activate
-3. > $ pip install -r requirements.txt
-    - > $ pipir
-
-
-## Other Ideas
-
-- [Instagram Bot](https://www.geeksforgeeks.org/post-a-picture-automatically-on-instagram-using-python/)
