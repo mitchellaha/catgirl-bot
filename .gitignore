@@ -1,4 +1,6 @@
-.jpeg
+# catgirl-bot Project Additions
+*.jpeg
+*.jpg
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
