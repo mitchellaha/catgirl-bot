@@ -7,28 +7,52 @@ from datetime import datetime as dt
 class catgirl:
     catgirlUrl = "https://nekos.best/api/v1/nekos"
 
-    def getCatgirl():
+    def getCatgirlJson():
+        """
+        Returns a Dictionary Object with the following keys:
+        source_url: The URL of the image
+        artist_href: The URL of the artist
+        artist_name: The name of the artist
+        url: The Direct URL of the image
+        """
         try:
             r = requests.get(catgirl.catgirlUrl)
             load = json.loads(r.text)
-        except:
+        except requests.exceptions.HTTPError:
             print("Error: Could not connect to Nekos API")
-            r = requests.get(catgirl.catgirlUrl)
-            load = json.loads(r.text)
+            r = requests.get(catgirl.catgirlUrl)  # ! This Is Useless, Needs To Be Changed/Removed
+            load = json.loads(r.text)  # ! This Is Useless, Needs To Be Changed/Removed
         return load
 
-    def getCatgirlImage(url):
+    def getCatgirlImage(apiJSON, savePath):
+        """
+        Takes a JSON Object from the Nekos API and saves the image to the defined path with the information as .json file
+        """
+        url = apiJSON["url"]
         r = requests.get(url, stream=True)
-        time = dt.now().strftime("%Y_%m_%d_%H_%M_%S")
-        with open(f"catgirl_{time}.jpg", 'wb') as f:
+
+        urlBasename = os.path.basename(url)
+        path = os.path.join(savePath, urlBasename)
+
+        with open(path, 'wb') as file:
             for chunk in r.iter_content(chunk_size=1024):
                 if chunk:
-                    f.write(chunk)
-                    f.flush()
-        return os.path.join(os.getcwd(), f"catgirl-{time}.jpg")
+                    file.write(chunk)
+                    file.flush()
+
+        apiJSON["save_time"] = dt.now().strftime("%Y-%m-%d_%H:%M:%S")
+        apiJSON["save_path"] = path
+        os.path.splitext(urlBasename)[0]
+
+        with open(os.path.join(savePath, os.path.splitext(urlBasename)[0] + ".json"), 'w') as f:
+            json.dump(apiJSON, f, indent=4, ensure_ascii=False)
+
+        return apiJSON
+
 
 if __name__ == "__main__":
+    saveFolder = os.path.join(os.getcwd(), "catgirl")
     # Get JSON from Nekos API
-    print(catgirl.getCatgirl())
+    print(catgirl.getCatgirlJson())
     # Get Image from Nekos API
-    print(catgirl.getCatgirlImage(catgirl.getCatgirl()['url']))
+    print(catgirl.getCatgirlImage(catgirl.getCatgirlJson(), saveFolder))
