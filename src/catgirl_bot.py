@@ -7,9 +7,15 @@ class bot:
         self.author = ""
         self.path = ""
 
-    def newStoicCatgirl(self):
-        newText = text.stoic.uwuStoic()
-        newPhoto = catgirl.getCatgirlImage(catgirl.getCatgirlJson(), "catgirl")
+    def newStoicCatgirl(self, dict=None):
+        if dict is None:
+            newText = text.stoic.uwuStoic()
+            newPhoto = catgirl.getCatgirlImage(catgirl.getCatgirlJson(), "catgirl")
+        else:
+            test = json.loads(dict)
+            newText = test["text"]
+            newPhoto = test
+        
         newPhoto["text"] = newText
 
         photoPath = newPhoto["save_path"]
@@ -35,3 +41,9 @@ if __name__ == "__main__":
     newCatgirl.newStoicCatgirl()
     print("File Location: " + str(newCatgirl.path))
     print("Author: " + str(newCatgirl.author))
+
+    # # TEST 0317.json
+    # test0317 = bot()
+    # test0317.newStoicCatgirl(dict=open("catgirl/issues/0317.json", "r").read())
+    # # print("File Location: " + str(test0317.path))
+    # print("Author: " + str(test0317.author))
