@@ -19,7 +19,7 @@ class image:
         font = ImageFont.truetype(textfont, fontSize)
         para = textwrap.wrap(text, width=int(self.width / (fontSize / 2.2)))
 
-        current_h, pad = 40, 20
+        current_h, pad = 40, 10
 
         # * Find the Total Height of all Lines Of Text Plus the Padding
         textTotalHeight = 0
@@ -35,11 +35,18 @@ class image:
             lineHeight = lineSize[1]
 
             # ? Determines the best fitting font size for the current line
+            print("LineWidth:" + str(lineWidth) + "  Image Width: " + str(self.width))
             while lineWidth > self.width:
-                print("Font Size: " + str(fontSize))
-                fontSize = fontSize - 2
+                print("")
+                print(f"ADJUSTING FONT SIZE FOR LINE: {para[line]}")
+                print(f"LineWidth: {lineWidth}")
+                print(f"Image Width: {self.width}")
+                fontSize = fontSize - 1
+                print(f"Adjusted Font Size: {fontSize}")
                 font = ImageFont.truetype(textfont, fontSize)
                 lineSize = font.getsize(para[line])
+                lineWidth = lineSize[0]
+                lineHeight = lineSize[1]
 
             # * Find the Position of the Text with Respect to How Many Lines Of Text
             textPositionX = (self.width / 2) - (lineWidth / 2)
@@ -56,8 +63,19 @@ class image:
         # Finds the best font size that keeps the line count under 5
         fontSize = 125
         para = textwrap.wrap(text, width=int(self.width / (fontSize / 2.2)))
-        while len(para) > 5:
-            fontSize = fontSize - 2
+
+        wordCount = len(text.split())
+        print(f"Word Count: {wordCount}")
+        if wordCount >= 40:  # ? Probably a More Pythonic Way to Do This / Will Return Later
+            maxLines = 6
+        if wordCount < 40:
+            maxLines = 5
+        if wordCount <= 30:
+            maxLines = 4
+        if wordCount <= 20:
+            maxLines = 3
+        while len(para) > maxLines:
+            fontSize = fontSize - 1
             para = textwrap.wrap(text, width=int(self.width / (fontSize / 2.2)))
         return fontSize
 
@@ -66,26 +84,26 @@ class image:
         self.image.save(path)
 
 if __name__ == "__main__":
-
-    demoText = "Death and pain awe not fwightening, it's the feaw of pain and death we need to feaw. Which is why we pwaise the poet who wwote, 'Death is not feawfuw, but dying wike a cowawd is.'"
-
-    # ! TEST 1
-    file = "/Users/mitchellaha/Repositories/catgirl-bot/catgirl/TEST.jpg"
+    demoText = """Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,
+    pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, """
+    # # ! TEST 1
+    file = "/Users/mitchellaha/Repositories/catgirl-bot/catgirl/0517.jpg"
     testPic = image(file)
     testPic.addText(demoText)
-    savePath = "/Users/mitchellaha/Repositories/catgirl-bot/test.jpg"
+    savePath = "/Users/mitchellaha/Repositories/catgirl-bot/0517_uwu.jpg"
     testPic.save(savePath)
 
-    # ! TEST 2
-    file2 = "/Users/mitchellaha/Repositories/catgirl-bot/catgirl/TEST2.jpg"
-    testPic2 = image(file2)
-    testPic2.addText(demoText)
-    savePath2 = "/Users/mitchellaha/Repositories/catgirl-bot/test2.jpg"
-    testPic2.save(savePath2)
+    # # ! TEST 2
+    # file = "/Users/mitchellaha/Repositories/catgirl-bot/catgirl/TEST4.jpg"
+    # testPic = image(file)
+    # testPic.addText(demoText)
+    # savePath = "/Users/mitchellaha/Repositories/catgirl-bot/TEST4_UWU.jpg"
+    # testPic.save(savePath)
 
-    # ! TEST 3
-    file3 = "/Users/mitchellaha/Repositories/catgirl-bot/catgirl/TEST3.jpg"
-    testPic3 = image(file3)
-    testPic3.addText(demoText)
-    savePath3 = "/Users/mitchellaha/Repositories/catgirl-bot/test3.jpg"
-    testPic3.save(savePath3)
+    # demoText3 = "Practice, Yourself, Because, Practice Yourself Lorem Ipsum Standard Texts Pwactice youwsewf, fow heaven's sake, in wittwe things; and thence pwoceed to gweata - Epictetus"
+    # # ! TEST 3
+    # file2 = "/Users/mitchellaha/Repositories/catgirl-bot/catgirl/0517.jpg"
+    # testPic2 = image(file2)
+    # testPic2.addText(demoText3)
+    # savePath2 = "/Users/mitchellaha/Repositories/catgirl-bot/0517_UWU2.jpg"
+    # testPic2.save(savePath2)
