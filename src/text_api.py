@@ -11,7 +11,7 @@ class text:
             try:
                 r = requests.get(text.fact.funUrl)
                 load = json.loads(r.text)
-            except :
+            except requests.exceptions.HTTPError:
                 print("Error: Could not connect to FunFact API > Trying Useless Fact API")
                 r = requests.get(text.fact.uselessUrl)
                 load = json.loads(r.text)
@@ -28,29 +28,28 @@ class text:
             try:
                 r = requests.get(text.stoic.stoicUrl)
                 load = json.loads(r.text)[0]
-                return load["body"]
-            except:
+                return load["body"], load["author"]
+            except requests.exceptions.HTTPError:
                 print("Error: Could not connect to Stoic API > Trying backup API")
                 r = requests.get(text.stoic.backupUrl)
                 load = json.loads(r.text)
-                return load["data"]["quote"]
+                return load["data"]["quote"], load["data"]["author"]
 
         def uwuStoic():
-            return uwuify.uwu(text.stoic.getStoic())
+            quote = text.stoic.getStoic()
+            return uwuify.uwu(quote[0]) + " - " + quote[1]
 
     def uwuText():
         return uwuify.uwu(text.getText())
 
 
 if __name__ == "__main__":
-    # Get Random Fact
-    print(text.fact.getFact())
-    # UwUify Fact
-    print(text.fact.uwuFact())
+    # # Get Random Fact
+    # print(text.fact.getFact())
+    # # UwUify Fact
+    # print(text.fact.uwuFact())
 
-    # Get Random Stoic Quote
-    print(text.stoic.getStoic())
-    # UwUify Stoic Quote
+    # # Get Random Stoic Quote
+    # print(text.stoic.getStoic())
+    # # UwUify Stoic Quote
     print(text.stoic.uwuStoic())
-
-
