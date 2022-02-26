@@ -6,7 +6,9 @@ This is a Twitter Bot Made For **[@TheCatGirlBot](https://twitter.com/TheCatGirl
 ## Ideas
 
 - Maybe Setup Flask for a web interface? 
-- [Instagram Posting](https://www.geeksforgeeks.org/post-a-picture-automatically-on-instagram-using-python/) with CatGirlBot?
+- Maybe Something in addition to stoic quotes? Astrology or something?
+- [Instagram Posting](https://www.geeksforgeeks.org/post-a-picture-automatically-on-instagram-using-python/) with CatGirl-Bot?
+- ["StyleGan-2 Generating Catgirls?"](https://github.com/EdZ543/This-Catgirl-Does-Not-Exist") (EdZ543)
 
 
 ## CatGirl API Info
