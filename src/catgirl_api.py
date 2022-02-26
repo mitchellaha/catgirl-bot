@@ -9,11 +9,14 @@ class catgirl:
 
     def getCatgirlJson():
         """
-        Returns a Dictionary Object with the following keys:
-        source_url: The URL of the image
-        artist_href: The URL of the artist
-        artist_name: The name of the artist
-        url: The Direct URL of the image
+        Gets a catgirl from the Nekos API and returns a Dictionary Object
+
+        returns:
+            A Dictionary Object with the following keys:
+                source_url: The URL of the image
+                artist_href: The URL of the artist
+                artist_name: The name of the artist
+                url: The Direct URL of the image
         """
         try:
             r = requests.get(catgirl.catgirlUrl)
@@ -26,7 +29,20 @@ class catgirl:
 
     def getCatgirlImage(apiJSON, savePath):
         """
-        Takes a JSON Object from the Nekos API and saves the image to the defined path with the information as .json file
+        Takes a JSON Object from the Nekos API and saves the image to the defined path with the information as .json file.
+        
+        args:
+            apiJSON: A Dictionary Object from the Nekos API.
+            savePath: The path to save the image and the .json file.
+
+        returns:
+            A Dictionary Object with the following keys:
+                source_url: The URL of the image
+                artist_href: The URL of the artist
+                artist_name: The name of the artist
+                url: The Direct URL of the image
+                save_path: The path to the saved image
+                save_time: The time the image was saved
         """
         url = apiJSON["url"]
         r = requests.get(url, stream=True)

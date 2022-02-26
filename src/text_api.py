@@ -2,54 +2,63 @@ import requests
 import json
 import uwuify
 
-class text:
-    class fact:
-        funUrl = "https://asli-fun-fact-api.herokuapp.com/"
-        uselessUrl = "https://uselessfacts.jsph.pl/random.json?language=en"
+def uwuText(text):
+    return uwuify.uwu(text)
 
-        def getFact():
-            try:
-                r = requests.get(text.fact.funUrl)
-                load = json.loads(r.text)
-            except requests.exceptions.HTTPError:
-                print("Error: Could not connect to FunFact API > Trying Useless Fact API")
-                r = requests.get(text.fact.uselessUrl)
-                load = json.loads(r.text)
-            return load['data']['fact']
+class fact:
+    funUrl = "https://asli-fun-fact-api.herokuapp.com/"
+    uselessUrl = "https://uselessfacts.jsph.pl/random.json?language=en"
 
-        def uwuFact():
-            return uwuify.uwu(text.fact.getFact())
+    def getFact():
+        """Gets a random fact from the Asli Fun Fact API.
+        
+        returns:
+            A String with the fact.
+        """
+        try:
+            r = requests.get(fact.funUrl)
+            load = json.loads(r.text)
+        except requests.exceptions.HTTPError:
+            print("Error: Could not connect to FunFact API > Trying Useless Fact API")
+            r = requests.get(fact.uselessUrl)
+            load = json.loads(r.text)
+        return load['data']['fact']
 
-    class stoic:
-        stoicUrl = "https://stoic-server.herokuapp.com/random"
-        backupUrl = "https://api.themotivate365.com/stoic-quote"
+    def uwuFact():
+        return uwuify.uwu(fact.getFact())
 
-        def getStoic():
-            try:
-                r = requests.get(text.stoic.stoicUrl)
-                load = json.loads(r.text)[0]
-                return load["body"], load["author"]
-            except requests.exceptions.HTTPError:
-                print("Error: Could not connect to Stoic API > Trying backup API")
-                r = requests.get(text.stoic.backupUrl)
-                load = json.loads(r.text)
-                return load["data"]["quote"], load["data"]["author"]
+class stoic:
+    stoicUrl = "https://stoic-server.herokuapp.com/random"
+    backupUrl = "https://api.themotivate365.com/stoic-quote"
 
-        def uwuStoic():
-            quote = text.stoic.getStoic()
-            return uwuify.uwu(quote[0]) + " - " + quote[1]
+    def getStoic():
+        """Gets a random stoic quote from the Stoic API.
 
-    def uwuText():
-        return uwuify.uwu(text.getText())
+        returns:
+            A Tuple with the quote and the author.
+        """
+        try:
+            r = requests.get(stoic.stoicUrl)
+            load = json.loads(r.text)[0]
+            return load["body"], load["author"]
+        except requests.exceptions.HTTPError:
+            print("Error: Could not connect to Stoic API > Trying backup API")
+            r = requests.get(stoic.backupUrl)
+            load = json.loads(r.text)
+            return load["data"]["quote"], load["data"]["author"]
+
+    def uwuStoic():
+        quote = stoic.getStoic()
+        return uwuify.uwu(quote[0]) + " - " + quote[1]
 
 
 if __name__ == "__main__":
     # # Get Random Fact
-    # print(text.fact.getFact())
+    # print(fact.getFact())
     # # UwUify Fact
-    # print(text.fact.uwuFact())
+    # print(fact.uwuFact())
 
     # # Get Random Stoic Quote
-    # print(text.stoic.getStoic())
+    # print(stoic.getStoic())
     # # UwUify Stoic Quote
-    print(text.stoic.uwuStoic())
+    print(stoic.uwuStoic())

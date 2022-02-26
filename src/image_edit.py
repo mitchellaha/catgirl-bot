@@ -14,7 +14,12 @@ class image:
         self.defaultFont = font
 
     def addText(self, text, textfont=defaultFontPath):
-        # Adds Text to the Image
+        """Adds Text to the Image
+
+        args:
+            text: The Text to be added to the Image
+            textfont: The Font to be used for the Text
+        """
         fontSize = self.findBestTextSize(text)
         font = ImageFont.truetype(textfont, fontSize)
         para = textwrap.wrap(text, width=int(self.width / (fontSize / 2.2)))
@@ -34,15 +39,15 @@ class image:
             lineWidth = lineSize[0]
             lineHeight = lineSize[1]
 
-            # ? Determines the best fitting font size for the current line
-            print("LineWidth:" + str(lineWidth) + "  Image Width: " + str(self.width))
+            # * Determines the best fitting font size for the current line
+            # print("LineWidth:" + str(lineWidth) + "  Image Width: " + str(self.width))
             while lineWidth > self.width:
-                print("")
-                print(f"ADJUSTING FONT SIZE FOR LINE: {para[line]}")
-                print(f"LineWidth: {lineWidth}")
-                print(f"Image Width: {self.width}")
+                # print("")
+                # print(f"ADJUSTING FONT SIZE FOR LINE: {para[line]}")
+                # print(f"LineWidth: {lineWidth}")
+                # print(f"Image Width: {self.width}")
                 fontSize = fontSize - 1
-                print(f"Adjusted Font Size: {fontSize}")
+                # print(f"Adjusted Font Size: {fontSize}")
                 font = ImageFont.truetype(textfont, fontSize)
                 lineSize = font.getsize(para[line])
                 lineWidth = lineSize[0]
@@ -60,13 +65,17 @@ class image:
             current_h -= lineHeight - pad  # ! To Move the Next Line Down
 
     def findBestTextSize(self, text):
-        # Finds the best font size that keeps the line count under 5
+        """Finds the best font size and sets the amount of lines baseed on the amound of words.
+
+        args:
+            text: The Text to be added to the Image
+        """
         fontSize = 125
         para = textwrap.wrap(text, width=int(self.width / (fontSize / 2.2)))
 
         wordCount = len(text.split())
         print(f"Word Count: {wordCount}")
-        if wordCount >= 40:  # ? Probably a More Pythonic Way to Do This / Will Return Later
+        if wordCount >= 40:  # ? Probably a More Pythonic Way to Do This / may Return Later
             maxLines = 6
         if wordCount < 40:
             maxLines = 5
@@ -80,30 +89,20 @@ class image:
         return fontSize
 
     def save(self, path):
-        # Saves The Image at the Defined Path
+        """Saves The Image at the Defined Path
+        
+        args:
+            path: The Path to Save the Image
+        """
         self.image.save(path)
 
 if __name__ == "__main__":
     demoText = """Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,
     pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, """
-    # # ! TEST 1
+
+    # ! TEST 1
     file = "/Users/mitchellaha/Repositories/catgirl-bot/catgirl/0517.jpg"
     testPic = image(file)
     testPic.addText(demoText)
-    savePath = "/Users/mitchellaha/Repositories/catgirl-bot/0517_uwu.jpg"
+    savePath = "0517_uwu.jpg"
     testPic.save(savePath)
-
-    # # ! TEST 2
-    # file = "/Users/mitchellaha/Repositories/catgirl-bot/catgirl/TEST4.jpg"
-    # testPic = image(file)
-    # testPic.addText(demoText)
-    # savePath = "/Users/mitchellaha/Repositories/catgirl-bot/TEST4_UWU.jpg"
-    # testPic.save(savePath)
-
-    # demoText3 = "Practice, Yourself, Because, Practice Yourself Lorem Ipsum Standard Texts Pwactice youwsewf, fow heaven's sake, in wittwe things; and thence pwoceed to gweata - Epictetus"
-    # # ! TEST 3
-    # file2 = "/Users/mitchellaha/Repositories/catgirl-bot/catgirl/0517.jpg"
-    # testPic2 = image(file2)
-    # testPic2.addText(demoText3)
-    # savePath2 = "/Users/mitchellaha/Repositories/catgirl-bot/0517_UWU2.jpg"
-    # testPic2.save(savePath2)

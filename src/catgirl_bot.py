@@ -1,6 +1,7 @@
-from catgirl_api import *
-from text_api import *
-from image_edit import *
+from src.catgirl_api import *
+from src.text_api import *
+from src.image_edit import *
+from src.twitter import *
 
 class bot:
     def __init__(self):
@@ -8,8 +9,16 @@ class bot:
         self.path = ""
 
     def newStoicCatgirl(self, dict=None):
+        """
+        Gets a new catgirl from the Nekos API adds Stoic Uwu Text to it and save it.
+
+        args:
+            dict: A dictionary object thats been created previously.
+
+        sets the object's uwu catgirl path and author attributes.
+        """
         if dict is None:
-            newText = text.stoic.uwuStoic()
+            newText = stoic.uwuStoic()
             newPhoto = catgirl.getCatgirlImage(catgirl.getCatgirlJson(), "catgirl")
         else:
             test = json.loads(dict)
@@ -36,14 +45,14 @@ class bot:
         self.author = photoAuthor
         self.path = savePath
 
-if __name__ == "__main__":
+def newStoicCatgirlPost():
     newCatgirl = bot()
     newCatgirl.newStoicCatgirl()
-    print("File Location: " + str(newCatgirl.path))
-    print("Author: " + str(newCatgirl.author))
+    upload = twitter.upload(newCatgirl.path)
+    mediaID = upload[0]
+    author = newCatgirl.author
+    if mediaID is not None:
+        print(twitter.postTextWithImage(f"Author: {author}", mediaID))
 
-    # # TEST 0317.json
-    # test0317 = bot()
-    # test0317.newStoicCatgirl(dict=open("catgirl/issues/0317.json", "r").read())
-    # # print("File Location: " + str(test0317.path))
-    # print("Author: " + str(test0317.author))
+if __name__ == "__main__":
+    newStoicCatgirlPost()
