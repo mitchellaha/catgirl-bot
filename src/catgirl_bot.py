@@ -53,6 +53,7 @@ def newStoicCatgirlPost():
     author = newCatgirl.author
     if mediaID is not None:
         print(twitter.postTextWithImage(f"Author: {author}", mediaID))
+        print("Posted: " + str(newCatgirl.path))
 
 if __name__ == "__main__":
     newStoicCatgirlPost()
