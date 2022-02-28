@@ -47,6 +47,10 @@ consumer_key = [CONSUMER_KEY]
 consumer_secret = [CONSUMER_SECRET]
 ~~~
 
+## Docker Setup
+
+- To Build: ```$ docker build -t catgirl-bot .```
+- To Run With Compose: ```$ docker-compose up -d```
 
 ## Resources
 
