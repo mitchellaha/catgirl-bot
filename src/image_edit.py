@@ -74,7 +74,7 @@ class image:
         para = textwrap.wrap(text, width=int(self.width / (fontSize / 2.2)))
 
         wordCount = len(text.split())
-        print(f"Word Count: {wordCount}")
+        # print(f"Word Count: {wordCount}")
         if wordCount >= 40:  # ? Probably a More Pythonic Way to Do This / may Return Later
             maxLines = 6
         if wordCount < 40:
