@@ -2,11 +2,12 @@ from src import catgirl_bot
 import schedule as sch
 import logging as log
 import time
-# ! Need To Eventually Make Logs Decorators !
+# ? Need To Eventually Make Logs Decorators ?
+# ? Take Into Account what if the image API pulls the same image twice? ?
 
 # ! Not Exactly Sure How Multiple File Logging Works, But Ill Put This Here for now.
 log.basicConfig(filename='./catgirl/logs/app.log', filemode='w',
-                format='%(asctime)s - %(message)s', level=log.DEBUG)
+                format='%(asctime)s - %(message)s', level=log.INFO)
 
 def main():
     log.info("--- Starting New Catgirl Post. ---")

@@ -14,7 +14,7 @@ def checkFile():
 
 checkFile()
 log.basicConfig(filename='./catgirl/logs/app.log', filemode='w',
-                format='%(asctime)s - %(message)s', level=log.DEBUG)
+                format='%(asctime)s - %(message)s', level=log.INFO)
 
 class bot:
     def __init__(self):
@@ -72,7 +72,7 @@ def newStoicCatgirlPost():
     author = newCatgirl.author
     if mediaID is not None:
         log.info("Posting Catgirl to Twitter with MediaID :" + str(mediaID))
-        # print(twitter.postTextWithImage(f"Author: {author}", mediaID))
+        twitter.postTextWithImage(f"Author: {author}", mediaID)
         log.info("Post Successful for : " + str(newCatgirl.path))
         # print("Posted: " + str(newCatgirl.path))
 
