@@ -9,6 +9,7 @@ This is a Twitter Bot Made For **[@TheCatGirlBot](https://twitter.com/TheCatGirl
 - Maybe Something in addition to stoic quotes? Astrology or something?
 - [Instagram Posting](https://www.geeksforgeeks.org/post-a-picture-automatically-on-instagram-using-python/) with CatGirl-Bot?
 - ["StyleGan-2 Generating Catgirls?"](https://github.com/EdZ543/This-Catgirl-Does-Not-Exist") (EdZ543)
+- [FaceSwapping?](https://github.com/shaoanlu/faceswap-GAN)
 
 
 ## CatGirl API Info
@@ -34,6 +35,17 @@ thumbsup, tickle, wave, wink
 1. ```$ python -m venv env```
 2. ```$ source venv/bin/activate```
 3. ```$ pip install -r requirements.txt```
+
+## Environment Variables Needed
+
+*catgirl-Bot is setup to load them from just a .env file*
+
+~~~
+oauth_token = [OAUTH_TOKEN]
+oauth_token_secret = [OAUTH_TOKEN_SECRET]
+consumer_key = [CONSUMER_KEY]
+consumer_secret = [CONSUMER_SECRET]
+~~~
 
 
 ## Resources
