@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  catgirl-bot:
+    image: catgirl-bot
+    environment:
+      - oauth_token=${oauth_token}
+      - oauth_token_secret=${oauth_token_secret}
+      - consumer_key=${consumer_key}
+      - consumer_secret=${consumer_secret}
+    volumes:
+      - ./data:/app/catgirl
