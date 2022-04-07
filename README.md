@@ -38,7 +38,7 @@ consumer_secret = [CONSUMER_SECRET]
 - Maybe Setup Flask for a web interface? 
 - Maybe Something in addition to stoic quotes? Astrology or something?
 - [Instagram Posting](https://www.geeksforgeeks.org/post-a-picture-automatically-on-instagram-using-python/) with CatGirl-Bot?
-- ["StyleGan-2 Generating Catgirls?"](https://github.com/EdZ543/This-Catgirl-Does-Not-Exist") (EdZ543)
+- ["StyleGan-2 Generating Catgirls?"](https://github.com/EdZ543/This-Catgirl-Does-Not-Exist) (EdZ543)
 - [FaceSwapping?](https://github.com/shaoanlu/faceswap-GAN)
 
 ## CatGirl API Info
